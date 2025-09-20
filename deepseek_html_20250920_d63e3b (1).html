@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestasiMaju - Platform Investasi Terpercaya</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding-top: 80px; /* Untuk memberi ruang pada fixed navbar */
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+            border: none;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: 600;
+        }
+        
+        .investment-plan {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .investment-plan .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .investment-plan .return {
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .dashboard-card {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .dashboard-card i {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-card .number {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .referral-code {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .auth-container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .dashboard-card {
+                margin-bottom: 15px;
+            }
+            
+            .investment-plan {
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Form validation styles */
+        .is-invalid {
+            border-color: #dc3545 !important;
+        }
+        
+        .invalid-feedback {
+            display: none;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: #dc3545;
+        }
+        
+        .was-validated .form-control:invalid ~ .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>InvestasiMaju
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" id="navItems">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="homeLink">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="plansLink">Rencana Investasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="dashboardLink">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="depositLink">Deposit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="withdrawLink">Withdraw</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="referralLink">Referral</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="loginLink">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="registerLink">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logoutLink">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="homePage">
+        <section class="hero-section">
+            <div class="container text-center">
+                <h1 class="display-4 fw-bold">Tingkatkan Keuangan Anda Dengan Investasi</h1>
+                <p class="lead">Platform investasi terpercaya dengan return harian yang menguntungkan</p>
+                <a href="#plansSection" class="btn btn-light btn-lg mt-3">Lihat Rencana Investasi</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="plansSection" class="my-5">
+                <h2 class="section-title">Rencana Investasi Kami</h2>
+                <div class="row">
+                    <!-- Plan 1 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card investment-plan">
+                            <div class="card-header">
+                                <h3>Paket Basic</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="price">Rp 100.000</p>
+                                <p>Return: <span class="return">Rp 20.000/hari</span></p>
+                                <p>Durasi: 20 hari</p>
+                                <p>Total Return: Rp 400.000</p>
+                                <button class="btn btn-primary mt-3" onclick="selectPlan(1)">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plan 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card investment-plan">
+                            <div class="card-header">
+                                <h3>Paket Silver</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="price">Rp 200.000</p>
+                                <p>Return: <span class="return">Rp 50.000/hari</span></p>
+                                <p>Durasi: 20 hari</p>
+                                <p>Total Return: Rp 1.000.000</p>
+                                <button class="btn btn-primary mt-3" onclick="selectPlan(2)">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plan 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card investment-plan">
+                            <div class="card-header">
+                                <h3>Paket Gold</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="price">Rp 500.000</p>
+                                <p>Return: <span class="return">Rp 100.000/hari</span></p>
+                                <p>Durasi: 20 hari</p>
+                                <p>Total Return: Rp 2.000.000</p>
+                                <button class="btn btn-primary mt-3" onclick="selectPlan(3)">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plan 4 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card investment-plan">
+                            <div class="card-header">
+                                <h3>Paket Platinum</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="price">Rp 750.000</p>
+                                <p>Return: <span class="return">Rp 150.000/hari</span></p>
+                                <p>Durasi: 20 hari</p>
+                                <p>Total Return: Rp 3.000.000</p>
+                                <button class="btn btn-primary mt-3" onclick="selectPlan(4)">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plan 5 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card investment-plan">
+                            <div class="card-header">
+                                <h3>Paket Diamond</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="price">Rp 1.500.000</p>
+                                <p>Return: <span class="return">Rp 400.000/hari</span></p>
+                                <p>Durasi: 15 hari</p>
+                                <p>Total Return: Rp 6.000.000</p>
+                                <button class="btn btn-primary mt-3" onclick="selectPlan(5)">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plan 6 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card investment-plan">
+                            <div class="card-header">
+                                <h3>Paket Executive</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="price">Rp 5.000.000</p>
+                                <p>Return: <span class="return">Rp 800.000/hari</span></p>
+                                <p>Durasi: 12 hari</p>
+                                <p>Total Return: Rp 9.600.000</p>
+                                <button class="btn btn-primary mt-3" onclick="selectPlan(6)">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plan 7 -->
+                    <div class="col-md-4 mb-4 mx-auto">
+                        <div class="card investment-plan">
+                            <div class="card-header">
+                                <h3>Paket VIP</h3>
+                            </div>
+                            <div class="card-body">
+                                <p class="price">Rp 10.000.000</p>
+                                <p>Return: <span class="return">Rp 1.000.000/hari</span></p>
+                                <p>Durasi: 15 hari</p>
+                                <p>Total Return: Rp 15.000.000</p>
+                                <button class="btn btn-primary mt-3" onclick="selectPlan(7)">Pilih Paket</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="my-5">
+                <h2 class="section-title">Cara Kerja Investasi</h2>
+                <div class="row">
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="card p-4">
+                            <i class="fas fa-user-plus fa-3x text-primary mb-3"></i>
+                            <h4>1. Daftar Akun</h4>
+                            <p>Buat akun Anda dan lengkapi profil</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="card p-4">
+                            <i class="fas fa-money-bill-wave fa-3x text-primary mb-3"></i>
+                            <h4>2. Pilih Paket Investasi</h4>
+                            <p>Pilih paket investasi yang sesuai dengan kebutuhan Anda</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="card p-4">
+                            <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                            <h4>3. Pantau Pertumbuhan</h4>
+                            <p>Pantau perkembangan investasi Anda di dashboard</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="hidden">
+        <div class="container">
+            <div class="auth-container">
+                <h2 class="text-center mb-4">Login ke Akun Anda</h2>
+                <form id="loginForm" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                        <div class="invalid-feedback">Harap masukkan email yang valid</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                        <div class="invalid-feedback">Harap masukkan password</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+                <p class="text-center mt-3">
+                    Belum punya akun? <a href="#" id="goToRegister">Daftar di sini</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="hidden">
+        <div class="container">
+            <div class="auth-container">
+                <h2 class="text-center mb-4">Daftar Akun Baru</h2>
+                <form id="registerForm" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="registerName" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="registerName" required>
+                        <div class="invalid-feedback">Harap masukkan nama lengkap</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                        <div class="invalid-feedback">Harap masukkan email yang valid</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPhone" class="form-label">Nomor Telepon</label>
+                        <input type="tel" class="form-control" id="registerPhone" required>
+                        <div class="invalid-feedback">Harap masukkan nomor telepon yang valid</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" required minlength="6">
+                        <div class="invalid-feedback">Password minimal 6 karakter</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerReferral" class="form-label">Kode Referral (opsional)</label>
+                        <input type="text" class="form-control" id="registerReferral">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Daftar</button>
+                </form>
+                <p class="text-center mt-3">
+                    Sudah punya akun? <a href="#" id="goToLogin">Login di sini</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="hidden">
+        <div class="container my-5">
+            <h2 class="section-title">Dashboard Investor</h2>
+            
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card dashboard-card">
+                        <i class="fas fa-wallet"></i>
+                        <h4>Saldo Utama</h4>
+                        <p class="number">Rp <span id="mainBalance">0</span></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card dashboard-card">
+                        <i class="fas fa-coins"></i>
+                        <h4>Saldo Profit</h4>
+                        <p class="number">Rp <span id="profitBalance">0</span></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card dashboard-card">
+                        <i class="fas fa-gift"></i>
+                        <h4>Bonus Referral</h4>
+                        <p class="number">Rp <span id="referralBalance">0</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Investasi Aktif</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Paket</th>
+                                            <th>Jumlah</th>
+                                            <th>Mulai</th>
+                                            <th>Berakhir</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="activeInvestments">
+                                        <tr>
+                                            <td colspan="5" class="text-center">Tidak ada investasi aktif</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Kode Referral Anda</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <p>Bagikan kode referral Anda dan dapatkan bonus 10% dari deposit pertama referral Anda</p>
+                            <div class="referral-code" id="userReferralCode">INVITE123</div>
+                            <button class="btn btn-outline-primary mt-3" onclick="copyReferralCode()">
+                                <i class="fas fa-copy me-2"></i>Salin Kode
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h4>Statistik Referral</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Total Referral: <strong id="totalReferrals">0</strong> orang</p>
+                            <p>Bonus Referral: <strong>Rp <span id="totalReferralBonus">0</span></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit Page -->
+    <div id="depositPage" class="hidden">
+        <div class="container my-5">
+            <h2 class="section-title">Deposit Dana</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Metode Pembayaran</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>Transfer dana ke rekening di bawah ini dan konfirmasi melalui WhatsApp CS.
+                            </div>
+                            
+                            <div class="bank-transfer">
+                                <h5>Transfer Bank</h5>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="https://via.placeholder.com/40" alt="Bank Jago" class="me-3">
+                                            <div>
+                                                <h6 class="mb-0">Bank Jago</h6>
+                                                <p class="mb-0">105155215555</p>
+                                            </div>
+                                        </div>
+                                        <p class="mb-0">a.n. PT Investasi Maju Jaya</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <form class="mt-4 needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="depositAmount" class="form-label">Jumlah Deposit (Rp)</label>
+                                    <input type="number" class="form-control" id="depositAmount" required min="100000">
+                                    <div class="invalid-feedback">Minimal deposit Rp 100.000</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="depositProof" class="form-label">Bukti Transfer</label>
+                                    <input type="file" class="form-control" id="depositProof" accept="image/*" required>
+                                    <div class="invalid-feedback">Harap upload bukti transfer</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Konfirmasi Deposit</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h4>Riwayat Deposit</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal</th>
+                                            <th>Jumlah</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="depositHistory">
+                                        <tr>
+                                            <td colspan="3" class="text-center">Belum ada riwayat deposit</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw Page -->
+    <div id="withdrawPage" class="hidden">
+        <div class="container my-5">
+            <h2 class="section-title">Withdraw Dana</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Penarikan Dana</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>Penarikan dana akan diproses dalam waktu 1x24 jam pada hari kerja.
+                            </div>
+                            
+                            <form class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="withdrawAmount" class="form-label">Jumlah Withdraw (Rp)</label>
+                                    <input type="number" class="form-control" id="withdrawAmount" required min="50000">
+                                    <div class="invalid-feedback">Minimal withdraw Rp 50.000</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Metode Penarikan</label>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="withdrawMethod" id="bankMethod" value="bank" checked>
+                                            <label class="form-check-label" for="bankMethod">
+                                                Transfer Bank
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="withdrawMethod" id="danaMethod" value="dana">
+                                            <label class="form-check-label" for="danaMethod">
+                                                DANA
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="withdrawMethod" id="ovoMethod" value="ovo">
+                                            <label class="form-check-label" for="ovoMethod">
+                                                OVO
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="withdrawMethod" id="gopayMethod" value="gopay">
+                                            <label class="form-check-label" for="gopayMethod">
+                                                GOPAY
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="bankDetails">
+                                    <div class="mb-3">
+                                        <label for="bankName" class="form-label">Nama Bank</label>
+                                        <input type="text" class="form-control" id="bankName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="accountNumber" class="form-label">Nomor Rekening</label>
+                                        <input type="text" class="form-control" id="accountNumber">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="accountName" class="form-label">Nama Pemilik Rekening</label>
+                                        <input type="text" class="form-control" id="accountName">
+                                    </div>
+                                </div>
+                                
+                                <div id="ewalletDetails" class="hidden">
+                                    <div class="mb-3">
+                                        <label for="ewalletNumber" class="form-label">Nomor E-Wallet</label>
+                                        <input type="text" class="form-control" id="ewalletNumber">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="ewalletName" class="form-label">Nama Pemilik E-Wallet</label>
+                                        <input type="text" class="form-control" id="ewalletName">
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">Ajukan Withdraw</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h4>Riwayat Withdraw</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal</th>
+                                            <th>Jumlah</th>
+                                            <th>Metode</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="withdrawHistory">
+                                        <tr>
+                                            <td colspan="4" class="text-center">Belum ada riwayat withdraw</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Referral Page -->
+    <div id="referralPage" class="hidden">
+        <div class="container my-5">
+            <h2 class="section-title">Program Referral</h2>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Bagaimana Program Referral Berkerja</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Dapatkan komisi 10% dari setiap deposit yang dilakukan oleh teman yang Anda referensikan.</p>
+                            <ol>
+                                <li>Bagikan kode referral unik Anda kepada teman</li>
+                                <li>Teman mendaftar menggunakan kode referral Anda</li>
+                                <li>Teman melakukan deposit pertama</li>
+                                <li>Anda mendapatkan komisi 10% dari nilai deposit pertama teman Anda</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h4>Link Referral Anda</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="referralLink" value="https://investasimaju.com/ref/INVITE123" readonly>
+                                <button class="btn btn-outline-primary" type="button" onclick="copyReferralLink()">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="d-flex mt-3 gap-2">
+                                <button class="btn btn-primary" onclick="shareWhatsApp()">
+                                    <i class="fab fa-whatsapp me-2"></i>Bagikan via WhatsApp
+                                </button>
+                                <button class="btn btn-info" onclick="shareTelegram()">
+                                    <i class="fab fa-telegram me-2"></i>Bagikan via Telegram
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Statistik Referral</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="dashboard-card">
+                                <i class="fas fa-users"></i>
+                                <h4>Total Referral</h4>
+                                <p class="number"><span id="referralCount">0</span> orang</p>
+                            </div>
+                            <div class="dashboard-card">
+                                <i class="fas fa-coins"></i>
+                                <h4>Total Komisi</h4>
+                                <p class="number">Rp <span id="totalCommission">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h4>Daftar Referral Anda</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Tanggal</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="referralList">
+                                        <tr>
+                                            <td colspan="3" class="text-center">Belum ada referral</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>InvestasiMaju</h5>
+                    <p>Platform investasi terpercaya dengan return harian yang menguntungkan untuk membantu Anda mencapai tujuan finansial.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Kontak Kami</h5>
+                    <p><i class="fas fa-envelope me-2"></i> info@investasimaju.com</p>
+                    <p><i class="fab fa-whatsapp me-2"></i> +62 838-9833-1732</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Link Terkait</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Syarat dan Ketentuan</a></li>
+                        <li><a href="#" class="text-white">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center mb-0">© 2023 InvestasiMaju. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6283898331732" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulasi data user
+        let userData = {
+            isLoggedIn: false,
+            name: "",
+            email: "",
+            mainBalance: 0,
+            profitBalance: 0,
+            referralBalance: 0,
+            referralCode: "INVITE123",
+            totalReferrals: 0,
+            totalCommission: 0
+        };
+        
+        // Elemen halaman
+        const pages = {
+            home: document.getElementById('homePage'),
+            login: document.getElementById('loginPage'),
+            register: document.getElementById('registerPage'),
+            dashboard: document.getElementById('dashboardPage'),
+            deposit: document.getElementById('depositPage'),
+            withdraw: document.getElementById('withdrawPage'),
+            referral: document.getElementById('referralPage')
+        };
+        
+        // Elemen navigasi
+        const navLinks = {
+            home: document.getElementById('homeLink'),
+            plans: document.getElementById('plansLink'),
+            dashboard: document.getElementById('dashboardLink'),
+            deposit: document.getElementById('depositLink'),
+            withdraw: document.getElementById('withdrawLink'),
+            referral: document.getElementById('referralLink'),
+            login: document.getElementById('loginLink'),
+            register: document.getElementById('registerLink'),
+            logout: document.getElementById('logoutLink')
+        };
+        
+        // Fungsi untuk menampilkan halaman tertentu
+        function showPage(page) {
+            // Sembunyikan semua halaman
+            for (const key in pages) {
+                pages[key].classList.add('hidden');
+            }
+            
+            // Tampilkan halaman yang dipilih
+            pages[page].classList.remove('hidden');
+            
+            // Perbarui navigasi
+            updateNavigation();
+        }
+        
+        // Fungsi untuk memperbarui navigasi berdasarkan status login
+        function updateNavigation() {
+            if (userData.isLoggedIn) {
+                navLinks.login.parentElement.classList.add('hidden');
+                navLinks.register.parentElement.classList.add('hidden');
+                navLinks.logout.parentElement.classList.remove('hidden');
+                navLinks.dashboard.parentElement.classList.remove('hidden');
+                navLinks.deposit.parentElement.classList.remove('hidden');
+                navLinks.withdraw.parentElement.classList.remove('hidden');
+                navLinks.referral.parentElement.classList.remove('hidden');
+            } else {
+                navLinks.login.parentElement.classList.remove('hidden');
+                navLinks.register.parentElement.classList.remove('hidden');
+                navLinks.logout.parentElement.classList.add('hidden');
+                navLinks.dashboard.parentElement.classList.add('hidden');
+                navLinks.deposit.parentElement.classList.add('hidden');
+                navLinks.withdraw.parentElement.classList.add('hidden');
+                navLinks.referral.parentElement.classList.add('hidden');
+            }
+        }
+        
+        // Fungsi untuk login
+        function login(email, password) {
+            // Simulasi login
+            userData.isLoggedIn = true;
+            userData.email = email;
+            userData.name = "John Doe";
+            userData.mainBalance = 2500000;
+            userData.profitBalance = 750000;
+            userData.referralBalance = 250000;
+            userData.totalReferrals = 5;
+            userData.totalCommission = 500000;
+            
+            // Perbarui UI
+            document.getElementById('mainBalance').textContent = userData.mainBalance.toLocaleString('id-ID');
+            document.getElementById('profitBalance').textContent = userData.profitBalance.toLocaleString('id-ID');
+            document.getElementById('referralBalance').textContent = userData.referralBalance.toLocaleString('id-ID');
+            document.getElementById('userReferralCode').textContent = userData.referralCode;
+            document.getElementById('totalReferrals').textContent = userData.totalReferrals;
+            document.getElementById('totalReferralBonus').textContent = userData.referralBalance.toLocaleString('id-ID');
+            document.getElementById('referralCount').textContent = userData.totalReferrals;
+            document.getElementById('totalCommission').textContent = userData.totalCommission.toLocaleString('id-ID');
+            
+            // Tampilkan dashboard
+            showPage('dashboard');
+        }
+        
+        // Fungsi untuk logout
+        function logout() {
+            userData.isLoggedIn = false;
+            showPage('home');
+        }
+        
+        // Fungsi untuk memilih paket investasi
+        function selectPlan(planId) {
+            if (!userData.isLoggedIn) {
+                alert('Silakan login terlebih dahulu untuk memilih paket investasi');
+                showPage('login');
+                return;
+            }
+            
+            // Simulasi pemilihan paket
+            alert('Anda telah memilih paket investasi ' + planId);
+        }
+        
+        // Fungsi untuk menyalin kode referral
+        function copyReferralCode() {
+            const referralCode = document.getElementById('userReferralCode').textContent;
+            navigator.clipboard.writeText(referralCode).then(() => {
+                alert('Kode referral berhasil disalin: ' + referralCode);
+            });
+        }
+        
+        // Fungsi untuk menyalin link referral
+        function copyReferralLink() {
+            const referralLink = document.getElementById('referralLink');
+            referralLink.select();
+            navigator.clipboard.writeText(referralLink.value).then(() => {
+                alert('Link referral berhasil disalin');
+            });
+        }
+        
+        // Fungsi untuk berbagi via WhatsApp
+        function shareWhatsApp() {
+            const message = `Hai! Saya ingin mengajak Anda bergabung dengan InvestasiMaju, platform investasi terpercaya. Gunakan kode referral saya: ${userData.referralCode} untuk mendapatkan bonus khusus!`;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Fungsi untuk berbagi via Telegram
+        function shareTelegram() {
+            const message = `Hai! Saya ingin mengajak Anda bergabung dengan InvestasiMaju, platform investasi terpercaya. Gunakan kode referral saya: ${userData.referralCode} untuk mendapatkan bonus khusus!`;
+            const telegramUrl = `https://t.me/share/url?url=https://investasimaju.com&text=${encodeURIComponent(message)}`;
+            window.open(telegramUrl, '_blank');
+        }
+        
+        // Toggle metode withdraw
+        document.querySelectorAll('input[name="withdrawMethod"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'bank') {
+                    document.getElementById('bankDetails').classList.remove('hidden');
+                    document.getElementById('ewalletDetails').classList.add('hidden');
+                } else {
+                    document.getElementById('bankDetails').classList.add('hidden');
+                    document.getElementById('ewalletDetails').classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Event listeners untuk navigasi
+        navLinks.home.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('home');
+        });
+        
+        navLinks.plans.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('home');
+            document.getElementById('plansSection').scrollIntoView();
+        });
+        
+        navLinks.dashboard.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (userData.isLoggedIn) {
+                showPage('dashboard');
+            } else {
+                showPage('login');
+            }
+        });
+        
+        navLinks.deposit.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (userData.isLoggedIn) {
+                showPage('deposit');
+            } else {
+                showPage('login');
+            }
+        });
+        
+        navLinks.withdraw.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (userData.isLoggedIn) {
+                showPage('withdraw');
+            } else {
+                showPage('login');
+            }
+        });
+        
+        navLinks.referral.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (userData.isLoggedIn) {
+                showPage('referral');
+            } else {
+                showPage('login');
+            }
+        });
+        
+        navLinks.login.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+        
+        navLinks.register.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('register');
+        });
+        
+        navLinks.logout.addEventListener('click', (e) => {
+            e.preventDefault();
+            logout();
+        });
+        
+        document.getElementById('goToRegister').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('register');
+        });
+        
+        document.getElementById('goToLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+        
+        // Form submission handlers
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (e.target.checkValidity()) {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                login(email, password);
+            }
+            e.target.classList.add('was-validated');
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (e.target.checkValidity()) {
+                // Simulasi pendaftaran berhasil
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                alert('Pendaftaran berhasil! Silakan login.');
+                showPage('login');
+            }
+            e.target.classList.add('was-validated');
+        });
+        
+        // Inisialisasi
+        updateNavigation();
+        showPage('home');
+    </script>
+</body>
+</html>
